@@ -1,1 +1,111 @@
-
+routeur1#show startup-config 
+Using 1464 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname routeur1
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username root privilege 15 secret 5 $1$mERr$2LMihtXeVU06JKlXJxAS.0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name tsuna.fr
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 223.0.0.1 255.255.255.0
+ ip nat outside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.1
+ encapsulation dot1Q 1 native
+ no ip address
+!
+interface GigabitEthernet0/0/1.2
+ encapsulation dot1Q 2
+ ip address 192.168.2.254 255.255.255.0
+ ip nat inside
+!
+interface GigabitEthernet0/0/1.3
+ encapsulation dot1Q 3
+ ip address 192.168.3.254 255.255.255.0
+!
+interface GigabitEthernet0/0/1.99
+ encapsulation dot1Q 99
+ ip address 192.168.99.254 255.255.255.0
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router eigrp 1
+ network 223.0.0.0
+!
+ip nat inside source list NAT_INTERNET_VLAN2 interface GigabitEthernet0/0/0 overload
+ip nat inside source static tcp 192.168.2.1 80 223.0.0.1 80 
+ip classless
+!
+ip flow-export version 9
+!
+!
+ip access-list standard NAT_INTERNET-VLAN2
+ permit 192.168.2.0 0.0.0.255
+!
+!
+!
+!
+!
+line con 0
+ login local
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+!
+!
+!
+end
