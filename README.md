@@ -1,7 +1,7 @@
 README – Projet Cisco : Administration d’une architecture réseau
-Fichier Packet Tracer : [Projet-Cisco.pkt](version_finale_radius.pkt)
+Fichier Packet Tracer : [version_finale_radius.pkt](Topologie/version_finale_radius.pkt)
 Contexte
-Ce projet a été réalisé dans le cadre du cours Administrez une architecture réseau avec Cisco (openclassrooms.com in Bing).
+Ce projet a été réalisé dans le cadre du cours Administrez une architecture réseau avec Cisco
 L’objectif était de concevoir, configurer et documenter une infrastructure réseau complète, intégrant routage, VLAN, sécurité et services.
 
 Architecture globale
